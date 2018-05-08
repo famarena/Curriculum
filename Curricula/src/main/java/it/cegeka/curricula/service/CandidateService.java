@@ -30,6 +30,7 @@ public class CandidateService {
 //		candidate.setSkillrates(skills);
 		candidate.setCurriculum(curriculum);
 		candidateRepo.save(candidate);
+		
 	}
 	
 	public void setRealSkill(long id, int realValue, String name)

@@ -11,6 +11,6 @@ import it.cegeka.curricula.entities.Candidate;
 
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
 
-	public Candidate findCandidateByIdCandidate(Long id);
+	public Candidate findByIdCandidate(Long id);
 	
 }
