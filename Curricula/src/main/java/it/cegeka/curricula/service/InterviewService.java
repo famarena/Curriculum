@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.entities.Interview;
+import it.cegeka.curricula.entities.JobPosition;
 import it.cegeka.curricula.entities.Selector;
 import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.repository.InterviewRepository;
+import it.cegeka.curricula.repository.PositionRepository;
 import it.cegeka.curricula.repository.SelectorRepository;
 @Service
 public class InterviewService {
@@ -24,19 +26,26 @@ public class InterviewService {
 	@Autowired
 	private SelectorRepository selectorRepository;
 	
-	public void newInterview(LocalDateTime dateTime, Long idCandidate, Long idSelector) {
+	@Autowired
+	private PositionRepository positionRepository;
+	
+	public void newInterview(LocalDateTime dateTime, Long idCandidate, Long idSelector, Long idPosition) {
 			
 		Interview interview = new Interview();
 		interview.setDateTime(dateTime);
-		Selector selector = selectorRepository.findSelectorByIdSelector(idSelector);
+		Selector selector = selectorRepository.findByIdSelector(idSelector);
 		Candidate candidate = candidateRepository.findByIdCandidate(idCandidate);
+		JobPosition jobPosition = positionRepository.findByIdPosition(idPosition);
 		interview.setCandidate(candidate);
 		interview.setSelector(selector);
+		interview.setJobPosition(jobPosition);
 		selector.getInterviews().add(interview);
 		candidate.getInterviews().add(interview);
+		jobPosition.getInterviews().add(interview);
 		selectorRepository.save(selector);
 		candidateRepository.save(candidate);
 		interviewRepository.save(interview);
+		positionRepository.save(jobPosition);
 		
 		
 		
