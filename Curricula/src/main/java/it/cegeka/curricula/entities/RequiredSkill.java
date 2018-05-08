@@ -22,7 +22,6 @@ public class RequiredSkill {
 	private int min;
 	
 	
-	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="job_position")
 	private JobPosition jobPosition;

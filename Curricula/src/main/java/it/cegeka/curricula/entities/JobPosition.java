@@ -6,11 +6,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import it.cegeka.curricula.enums.Sector;
 
 @Entity
 @Table(name="job_position")
@@ -18,10 +22,11 @@ public class JobPosition {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "id_candidate")
+	@Column(name = "id_position")
 	private Long idPosition;
 	@Column(name="sector")
-	private Enum Sector;
+	@Enumerated(EnumType.STRING)
+	private Sector sector;
 	@Column(name = "open")
 	private boolean open;
 	@Column(name ="position_name")
@@ -41,11 +46,11 @@ public class JobPosition {
 	public void setInterviews(List<Interview> interviews) {
 		this.interviews = interviews;
 	}
-	public Enum getSector() {
-		return Sector;
+	public Sector getSector() {
+		return sector;
 	}
-	public void setSector(Enum sector) {
-		Sector = sector;
+	public void setSector(Sector sector) {
+		this.sector = sector;
 	}
 	public Long getIdPosition() {
 		return idPosition;

@@ -6,11 +6,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import it.cegeka.curricula.enums.SkillCategory;
 
 @Entity
 @Table(name="skill")
@@ -22,7 +26,8 @@ public class Skill {
 	@Column(name = "name")
 	private String name;
 	@Column(name = "category")
-	private Enum category;
+	@Enumerated(EnumType.STRING)
+	private SkillCategory category;
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "skill")
 	private List<SkillRate> skillRates = new ArrayList<SkillRate>();
@@ -45,10 +50,10 @@ public class Skill {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Enum getCategory() {
+	public SkillCategory getCategory() {
 		return category;
 	}
-	public void setCategory(Enum category) {
+	public void setCategory(SkillCategory category) {
 		this.category = category;
 	}
 	public List<SkillRate> getSkillRates() {

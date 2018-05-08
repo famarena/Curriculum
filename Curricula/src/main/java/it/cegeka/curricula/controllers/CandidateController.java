@@ -1,5 +1,6 @@
 package it.cegeka.curricula.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.cegeka.curricula.entities.Candidate;
+import it.cegeka.curricula.enums.Sector;
+import it.cegeka.curricula.enums.SkillCategory;
 import it.cegeka.curricula.repository.CandidateRepository;
+import it.cegeka.curricula.service.PositionService;
+import it.cegeka.curricula.service.utility.SkillValue;
 
 
 
@@ -21,14 +26,31 @@ public class CandidateController {
 	CandidateRepository candidateRepo;
 	
 	
-	@GetMapping(path="/newCandidate")
+	@Autowired 
+	PositionService positionServ;
+	
+	
+	
+	@GetMapping(path="/newPosition")
 	@ResponseBody
-	public String newCandidate() {
-		Candidate c = new Candidate();
+	public String newPosition() {
+		SkillValue s1 = new SkillValue();
+		SkillValue s2 = new SkillValue();
+		SkillValue s3 = new SkillValue();
+		s1.setSkillName("Java");
+		s1.setValue(3);
+		s2.setSkillName("MySQL");
+		s2.setValue(3);
+		s3.setSkillName("C");
+		s3.setValue(5);
+		List<SkillValue> reqSkills = new ArrayList<>();
+		reqSkills.add(s1);
+		reqSkills.add(s2);
+		reqSkills.add(s3);
 
-		c.setName("fff");
-		c.setSurname("ddd");
-		candidateRepo.save(c);
+		positionServ.newPosition(reqSkills, Sector.IT, "c++ dev");
 		return "all";
 	}
+	
+	
 }
