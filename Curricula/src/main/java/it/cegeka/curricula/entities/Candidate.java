@@ -15,7 +15,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//Testdev
 @Entity
 @Table(name="candidate")
 
@@ -35,9 +37,10 @@ public class Candidate {
 	@Column(name = "curriculum")
 	private String curriculum;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "candidate")
 	private List<Interview> interviews = new ArrayList<Interview>();
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "candidate")
 	private List<SkillRate> skillrates = new ArrayList<SkillRate>();
 	

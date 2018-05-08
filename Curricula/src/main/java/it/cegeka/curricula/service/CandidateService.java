@@ -1,6 +1,7 @@
 package it.cegeka.curricula.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,8 +43,14 @@ public class CandidateService {
 		
 	}
 	
-//	public List<Candidate> getCandidatesBySkill(String skillName) {
-//		return null;
-//	}
+	public List<Candidate> getCandidatesBySkill(String skillName) {
+		List <Candidate> lcand = new ArrayList <Candidate>();
+		List<SkillRate> lsr= skillRateRepo.findBySkillName(skillName);
+		for(SkillRate sr1: lsr)
+		{
+			lcand.add(sr1.getCandidate());
+		}
+		return lcand;
+	}
 
 }
