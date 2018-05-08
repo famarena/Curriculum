@@ -18,7 +18,7 @@ public class Skill {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_skill")
-	private int idSkill;
+	private Long idSkill;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "category")
@@ -33,10 +33,10 @@ public class Skill {
 	
 	
 	
-	public int getIdSkill() {
+	public Long getIdSkill() {
 		return idSkill;
 	}
-	public void setIdSkill(int idSkill) {
+	public void setIdSkill(Long idSkill) {
 		this.idSkill = idSkill;
 	}
 	public String getName() {

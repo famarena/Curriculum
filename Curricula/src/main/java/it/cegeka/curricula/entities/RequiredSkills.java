@@ -17,7 +17,7 @@ public class RequiredSkills {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_required_skill")
-	private int idRequiredSkill;
+	private Long idRequiredSkill;
 	@Column(name="min")
 	private int min;
 	
@@ -38,10 +38,10 @@ public class RequiredSkills {
 	public void setSkill(Skill skill) {
 		this.skill = skill;
 	}
-	public int getIdRequiredSkill() {
+	public Long getIdRequiredSkill() {
 		return idRequiredSkill;
 	}
-	public void setIdRequiredSkill(int idRequiredSkill) {
+	public void setIdRequiredSkill(Long idRequiredSkill) {
 		this.idRequiredSkill = idRequiredSkill;
 	}
 	public int getMin() {

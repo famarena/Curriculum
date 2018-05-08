@@ -24,7 +24,7 @@ public class Candidate {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_candidate")
-	private int idCandidate;
+	private Long idCandidate;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "surname")
@@ -45,12 +45,7 @@ public class Candidate {
 		
 	}
 
-	public int getIdCandidate() {
-		return idCandidate;
-	}
-	public void setIdCandidate(int idCandidate) {
-		this.idCandidate = idCandidate;
-	}
+
 	public String getName() {
 		return name;
 	}
@@ -91,6 +86,16 @@ public class Candidate {
 	}
 	public void setSkillrates(List<SkillRate> skillrates) {
 		this.skillrates = skillrates;
+	}
+
+
+	public Long getIdCandidate() {
+		return idCandidate;
+	}
+
+
+	public void setIdCandidate(Long idCandidate) {
+		this.idCandidate = idCandidate;
 	}
 	
 	

@@ -1,6 +1,7 @@
 package it.cegeka.curricula.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -23,13 +24,13 @@ public class Interview {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_interview")
-	private int idInterview;
+	private Long idInterview;
 	@Column(name = "status")
 	private String status;
 	@Column(name = "feedback")
 	private String feedback;
 	@Column(name="date_time")
-	private LocalDate dateTime;
+	private LocalDateTime dateTime;
 	
 	
 	@ManyToOne(cascade= CascadeType.ALL)
@@ -52,14 +53,7 @@ public class Interview {
 		
 	}
 
-	
-	public int getIdInterview() {
-		return idInterview;
-	}
 
-	public void setIdInterview(int idInterview) {
-		this.idInterview = idInterview;
-	}
 
 	public String getStatus() {
 		return status;
@@ -105,14 +99,27 @@ public class Interview {
 	}
 
 
-	public LocalDate getDateTime() {
+	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
 
 
-	public void setDateTime(LocalDate dateTime) {
+	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
+
+
+
+	public Long getIdInterview() {
+		return idInterview;
+	}
+
+
+
+	public void setIdInterview(Long idInterview) {
+		this.idInterview = idInterview;
+	}
+
 
 
 	

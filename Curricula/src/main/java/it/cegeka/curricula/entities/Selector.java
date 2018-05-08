@@ -18,7 +18,7 @@ public class Selector {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_selector")
-	private int idSelector;
+	private Long idSelector;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "surname")
@@ -33,11 +33,11 @@ public class Selector {
 		
 	}
 
-	public int getIdSelector() {
+	public Long getIdSelector() {
 		return idSelector;
 	}
 
-	public void setIdSelector(int idSelector) {
+	public void setIdSelector(Long idSelector) {
 		this.idSelector = idSelector;
 	}
 

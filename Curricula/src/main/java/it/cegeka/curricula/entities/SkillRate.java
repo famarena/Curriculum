@@ -17,7 +17,7 @@ public class SkillRate {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_skill_rate")
-	private int idSkillRate;
+	private Long idSkillRate;
 	@Column(name = "declared_value")
 	private int declaredValue;
 	@Column(name = "real_value")
@@ -34,10 +34,10 @@ public class SkillRate {
 	
 	
 	
-	public int getIdSkillRate() {
+	public Long getIdSkillRate() {
 		return idSkillRate;
 	}
-	public void setIdSkillRate(int idSkillRate) {
+	public void setIdSkillRate(Long idSkillRate) {
 		this.idSkillRate = idSkillRate;
 	}
 	public Skill getSkill() {

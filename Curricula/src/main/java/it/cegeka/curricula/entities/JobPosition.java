@@ -19,7 +19,7 @@ public class JobPosition {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_candidate")
-	private int idPosition;
+	private Long idPosition;
 	@Column(name="sector")
 	private Enum Sector;
 	@Column(name = "open")
@@ -46,10 +46,10 @@ public class JobPosition {
 	public void setSector(Enum sector) {
 		Sector = sector;
 	}
-	public int getIdPosition() {
+	public Long getIdPosition() {
 		return idPosition;
 	}
-	public void setIdPosition(int idPosition) {
+	public void setIdPosition(Long idPosition) {
 		this.idPosition = idPosition;
 	}
 	public boolean isOpen() {
