@@ -24,7 +24,8 @@ public class JobPosition {
 	private Enum Sector;
 	@Column(name = "open")
 	private boolean open;
-	
+	@Column(name ="position_name")
+	private String positionName;
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "jobPosition")
 	private List<RequiredSkill> requiredSkills = new ArrayList<RequiredSkill>();
@@ -63,6 +64,12 @@ public class JobPosition {
 	}
 	public void setRequiredSkills(List<RequiredSkill> requiredSkills) {
 		this.requiredSkills = requiredSkills;
+	}
+	public String getPositionName() {
+		return positionName;
+	}
+	public void setPositionName(String positionName) {
+		this.positionName = positionName;
 	}
 	
 	
