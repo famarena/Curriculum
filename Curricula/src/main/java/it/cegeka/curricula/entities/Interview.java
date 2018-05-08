@@ -1,5 +1,6 @@
 package it.cegeka.curricula.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -28,8 +29,7 @@ public class Interview {
 	@Column(name = "feedback")
 	private String feedback;
 	@Column(name="date_time")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateTime;
+	private LocalDate dateTime;
 	
 	
 	@ManyToOne(cascade= CascadeType.ALL)
@@ -92,16 +92,7 @@ public class Interview {
 	public void setSelector(Selector selector) {
 		this.selector = selector;
 	}
-
-
-	public Date getDateTime() {
-		return dateTime;
-	}
-
-
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
-	}
+	
 
 
 	public JobPosition getJobPosition() {
@@ -111,6 +102,16 @@ public class Interview {
 
 	public void setJobPosition(JobPosition jobPosition) {
 		this.jobPosition = jobPosition;
+	}
+
+
+	public LocalDate getDateTime() {
+		return dateTime;
+	}
+
+
+	public void setDateTime(LocalDate dateTime) {
+		this.dateTime = dateTime;
 	}
 
 

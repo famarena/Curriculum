@@ -25,7 +25,7 @@ public class CandidateController {
 	@ResponseBody
 	public String newCandidate() {
 		Candidate c = new Candidate();
-		c.setAge(30);
+
 		c.setName("fff");
 		c.setSurname("ddd");
 		candidateRepo.save(c);

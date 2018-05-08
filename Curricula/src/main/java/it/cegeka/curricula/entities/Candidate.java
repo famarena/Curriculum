@@ -31,8 +31,7 @@ public class Candidate {
 	private String surname;
 	@Column(name = "birthday")
 	private LocalDate birthday;
-	@Column(name = "age")
-	private int age;
+
 	@Column(name = "curriculum")
 	private String curriculum;
 	
@@ -79,15 +78,6 @@ public class Candidate {
 
 	public void setCurriculum(String curriculum) {
 		this.curriculum = curriculum;
-	}
-
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public List<Interview> getInterviews() {
