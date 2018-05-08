@@ -28,7 +28,7 @@ public class Skill {
 	private List<SkillRate> skillRates = new ArrayList<SkillRate>();
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "skill")
-	private List<RequiredSkills> requiredSkills = new ArrayList<RequiredSkills>();
+	private List<RequiredSkill> requiredSkills = new ArrayList<RequiredSkill>();
 
 	
 	
@@ -57,10 +57,10 @@ public class Skill {
 	public void setSkillRates(List<SkillRate> skillRates) {
 		this.skillRates = skillRates;
 	}
-	public List<RequiredSkills> getRequiredSkills() {
+	public List<RequiredSkill> getRequiredSkills() {
 		return requiredSkills;
 	}
-	public void setRequiredSkills(List<RequiredSkills> requiredSkills) {
+	public void setRequiredSkills(List<RequiredSkill> requiredSkills) {
 		this.requiredSkills = requiredSkills;
 	}
 	

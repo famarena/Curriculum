@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.entities.Selector;
+import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.repository.InterviewRepository;
 
 public class InterviewService {
@@ -14,9 +15,15 @@ public class InterviewService {
 	@Autowired
 	private InterviewRepository interviewRepository;
 	
-	public void newInterview(LocalDateTime dateTime, Candidate candidate, Selector selector) {
+	@Autowired
+	private CandidateRepository candidateRepository;
+
+	
+	public void newInterview(LocalDateTime dateTime, Long idCandidate, Long idSelector) {
 		
 	}
+	
+	
 	
 	
 	

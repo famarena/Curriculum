@@ -27,7 +27,7 @@ public class JobPosition {
 	
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "jobPosition")
-	private List<RequiredSkills> requiredSkills = new ArrayList<RequiredSkills>();
+	private List<RequiredSkill> requiredSkills = new ArrayList<RequiredSkill>();
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "jobPosition")
 	private List<Interview> interviews = new ArrayList<Interview>();
@@ -58,10 +58,10 @@ public class JobPosition {
 	public void setOpen(boolean open) {
 		this.open = open;
 	}
-	public List<RequiredSkills> getRequiredSkills() {
+	public List<RequiredSkill> getRequiredSkills() {
 		return requiredSkills;
 	}
-	public void setRequiredSkills(List<RequiredSkills> requiredSkills) {
+	public void setRequiredSkills(List<RequiredSkill> requiredSkills) {
 		this.requiredSkills = requiredSkills;
 	}
 	
