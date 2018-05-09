@@ -21,13 +21,13 @@ public class CandidateService {
 	@Autowired
 	SkillRateRepository skillRateRepo;
 	
-	public void newCandidate(String name, String surname, LocalDate date, List <SkillRate> skills, String curriculum )
+	public void newCandidate(String name, String surname, LocalDate date, String curriculum )
 	{
 		Candidate candidate = new Candidate(); 
 		candidate.setName(name);
 		candidate.setSurname(surname);
 		candidate.setBirthday(date);
-		candidate.setSkillrates(skills);
+//		candidate.setSkillrates(skills);
 		candidate.setCurriculum(curriculum);
 		candidateRepo.save(candidate);
 	}
