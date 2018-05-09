@@ -7,11 +7,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import it.cegeka.curricula.enums.Sector;
 @Entity
 @Table(name="selector")
 public class Selector {
@@ -24,7 +28,8 @@ public class Selector {
 	@Column(name = "surname")
 	private String surname;
 	@Column(name = "sector")
-	private Enum sector;
+	@Enumerated(EnumType.STRING)
+	private Sector sector;
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "selector")
 	private List<Interview> interviews;
@@ -65,12 +70,12 @@ public class Selector {
 		this.interviews = interviews;
 	}
 
-	public Enum getSector() {
+	public Sector getSector() {
 		return sector;
 	}
 
-	public void setSector(Enum sector) {
-		sector = sector;
+	public void setSector(Sector sector) {
+		this.sector = sector;
 	}
 
 	

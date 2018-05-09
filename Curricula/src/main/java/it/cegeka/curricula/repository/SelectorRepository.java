@@ -7,5 +7,5 @@ import it.cegeka.curricula.entities.Selector;
 
 public interface SelectorRepository extends JpaRepository<Selector, Long> {
 
-	public Selector findSelectorById(Long id);
+	public Selector findSelectorByIdSelector(Long id);
 }

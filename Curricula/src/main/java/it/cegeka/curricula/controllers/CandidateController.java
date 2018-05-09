@@ -25,7 +25,7 @@ public class CandidateController {
 
 
 	@Autowired 
-	CandidateService candidateService;
+	private CandidateService candidateService;
 	
 	@GetMapping(path="/asd")
 	@ResponseBody
