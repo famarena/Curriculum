@@ -33,18 +33,18 @@ public class JobPositionController {
 		SkillValue s2 = new SkillValue();
 		SkillValue s3 = new SkillValue();
 		s1.setSkillName("Java");
-		s1.setValue(3);
+		s1.setValue(1);
 		s2.setSkillName("MySQL");
-		s2.setValue(3);
+		s2.setValue(1);
 		s3.setSkillName("C");
-		s3.setValue(5);
+		s3.setValue(1);
 		
 		List<SkillValue> reqSkills = new ArrayList<>();
 		reqSkills.add(s1);
 		reqSkills.add(s2);
 		reqSkills.add(s3);
 
-		positionServ.newPosition(reqSkills, Sector.IT, "c++ dev");
+		positionServ.newPosition(reqSkills, Sector.IT, "junior dev");
 		return "all";
 	}
 	

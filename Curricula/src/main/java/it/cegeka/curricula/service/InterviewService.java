@@ -2,6 +2,8 @@ package it.cegeka.curricula.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +69,11 @@ public class InterviewService {
 			interviewRepository.save(interview);
 		}
 		
+	}
+	
+	public List<Interview> findByDateTimeBetween(LocalDateTime date1, LocalDateTime date2){
+		 List<Interview> interviews = interviewRepository.findByDateTimeBetween(date1,date2);
+		 return interviews;
 	}
 	
 	
