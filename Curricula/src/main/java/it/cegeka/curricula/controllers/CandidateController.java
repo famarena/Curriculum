@@ -43,7 +43,6 @@ public class CandidateController {
 
 	@GetMapping(path = "/findBySurname")
 	public List<Candidate> findCandidatebySurname(@RequestParam("string") String string) {
-
 		List<Candidate> lcand = candidateService.getCandidatesBySurname(string);
 		return lcand;
 	}
