@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.repository.SkillRateRepository;
+import it.cegeka.curricula.repository.SkillRepository;
 import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.entities.Skill;
 import it.cegeka.curricula.entities.SkillRate;
@@ -21,6 +22,8 @@ public class CandidateService {
 	CandidateRepository candidateRepo;
 	@Autowired
 	SkillRateRepository skillRateRepo;
+	@Autowired
+	SkillRepository skillRepo;
 
 	public void newCandidate(String name, String surname, LocalDate date, String curriculum) {
 		Candidate candidate = new Candidate();
@@ -52,4 +55,14 @@ public class CandidateService {
 		return lcand;
 	}
 
+	public void setInitialSkill(Long id, String name, Integer value) {
+		SkillRate e = new SkillRate();
+		Optional<Candidate> opt = candidateRepo.findById(id);
+		Candidate candidate = opt.get();
+		e.setDeclaredValue(value);
+		e.setCandidate(candidate);
+		e.setSkill(skillRepo.findByName(name));
+		candidate.getSkillrates().add(e);
+		candidateRepo.save(candidate);
+	}
 }
