@@ -1,17 +1,29 @@
 package it.cegeka.curricula.controllers;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.service.CandidateService;
+
+
 
 @RestController
 @RequestMapping(path = "/candidate")
@@ -26,14 +38,38 @@ public class CandidateController {
 		candidateService.setRealSkill(id, value, name);
 		return "Skill setted";
 	}
-
-	@PostMapping(path = "/add")
-	public String addNewCandidate(@RequestParam("name") String name, @RequestParam("surname") String surname,
-			@RequestParam("cv") String cv) {
-		LocalDate data = null;
-		candidateService.newCandidate(name, surname, data, cv);
-		return "Candidate saved";
+	
+	@GetMapping("/candidate/{id}")
+	public Resource<Candidate> retrieveUser(@PathVariable Long id) {
+		
+		Candidate candidate = candidateService.findOne(id);
+		
+//		if(candidate==null)
+//			throw new UserNotFoundException("id-"+ id);
+		Resource<Candidate> resource = new Resource<Candidate>(candidate);
+		
+//		ControllerLinkBuilder linkTo = 
+//				linkTo(methodOn(this.getClass()).retrieveAllUsers());
+//		
+//		resource.add(linkTo.withRel("all-users"));
+		
+		//HATEOAS
+		
+		return resource;
 	}
+
+	@PostMapping(path = "/candidate")
+	public ResponseEntity<Object> addNewCandidate(@RequestBody Candidate candidate) {
+		
+		Candidate savedCandidate = candidateService.save(candidate);
+		
+		URI location = ServletUriComponentsBuilder
+			.fromCurrentRequest()
+			.path("/{id}")
+			.buildAndExpand(savedCandidate.getIdCandidate()).toUri();
+		
+		return ResponseEntity.created(location).build();
+		}
 
 	@GetMapping(path = "/findBySkill")
 	public List<Candidate> findCandidatebySkillName(@RequestParam("skill") String skill) {
