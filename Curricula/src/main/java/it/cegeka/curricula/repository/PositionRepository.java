@@ -7,4 +7,5 @@ import it.cegeka.curricula.entities.JobPosition;
 
 public interface PositionRepository extends JpaRepository<JobPosition, Long> {
 
+	public JobPosition findByIdPosition(Long idPos);
 }

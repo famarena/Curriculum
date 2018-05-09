@@ -25,7 +25,7 @@ public class InterviewController {
 		LocalDateTime dateTime = LocalDateTime.parse(dateToDate, formatter);
 		
 		
-		interviewService.newInterview(dateTime, 1L, 1L);
+		interviewService.newInterview(dateTime, 1L, 1L, 1L);
 		
 		return "creato";
 	}

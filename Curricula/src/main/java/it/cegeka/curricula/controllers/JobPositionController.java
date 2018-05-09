@@ -38,6 +38,7 @@ public class JobPositionController {
 		s2.setValue(3);
 		s3.setSkillName("C");
 		s3.setValue(5);
+		
 		List<SkillValue> reqSkills = new ArrayList<>();
 		reqSkills.add(s1);
 		reqSkills.add(s2);
