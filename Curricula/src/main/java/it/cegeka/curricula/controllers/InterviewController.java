@@ -20,7 +20,7 @@ public class InterviewController {
 	@GetMapping(path="/newInterview")
 	@ResponseBody
 	public String newInterview() {
-		String dateToDate ="2018-12-3 15:30";
+		String dateToDate ="2018-12-03 15:30";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(dateToDate, formatter);
 		

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import it.cegeka.curricula.enums.Demand;
 import it.cegeka.curricula.enums.Sector;
 
 @Entity
@@ -27,10 +28,12 @@ public class JobPosition {
 	@Column(name="sector")
 	@Enumerated(EnumType.STRING)
 	private Sector sector;
-	@Column(name = "open")
-	private boolean open;
+	@Column(name = "demand")
+	@Enumerated(EnumType.STRING)
+	private Demand demand;
 	@Column(name ="position_name")
 	private String positionName;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "jobPosition")
 	private List<RequiredSkill> requiredSkills = new ArrayList<RequiredSkill>();
@@ -58,12 +61,7 @@ public class JobPosition {
 	public void setIdPosition(Long idPosition) {
 		this.idPosition = idPosition;
 	}
-	public boolean isOpen() {
-		return open;
-	}
-	public void setOpen(boolean open) {
-		this.open = open;
-	}
+
 	public List<RequiredSkill> getRequiredSkills() {
 		return requiredSkills;
 	}
@@ -75,6 +73,12 @@ public class JobPosition {
 	}
 	public void setPositionName(String positionName) {
 		this.positionName = positionName;
+	}
+	public Demand getDemand() {
+		return demand;
+	}
+	public void setDemand(Demand demand) {
+		this.demand = demand;
 	}
 	
 	

@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import it.cegeka.curricula.enums.Status;
 
 
 @Entity
@@ -26,7 +30,8 @@ public class Interview {
 	@Column(name = "id_interview")
 	private Long idInterview;
 	@Column(name = "status")
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private Status status;
 	@Column(name = "feedback")
 	private String feedback;
 	@Column(name="date_time")
@@ -55,11 +60,11 @@ public class Interview {
 
 
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

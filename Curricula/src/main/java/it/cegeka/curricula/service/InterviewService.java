@@ -10,6 +10,7 @@ import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.entities.Interview;
 import it.cegeka.curricula.entities.JobPosition;
 import it.cegeka.curricula.entities.Selector;
+import it.cegeka.curricula.enums.Status;
 import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.repository.InterviewRepository;
 import it.cegeka.curricula.repository.PositionRepository;
@@ -32,26 +33,41 @@ public class InterviewService {
 	public void newInterview(LocalDateTime dateTime, Long idCandidate, Long idSelector, Long idPosition) {
 			
 		Interview interview = new Interview();
-		interview.setDateTime(dateTime);
 		Selector selector = selectorRepository.findByIdSelector(idSelector);
 		Candidate candidate = candidateRepository.findByIdCandidate(idCandidate);
 		JobPosition jobPosition = positionRepository.findByIdPosition(idPosition);
 		interview.setCandidate(candidate);
 		interview.setSelector(selector);
+		interview.setDateTime(dateTime);
 		interview.setJobPosition(jobPosition);
+		interview.setStatus(Status.PLANNED);
 		selector.getInterviews().add(interview);
 		candidate.getInterviews().add(interview);
 		jobPosition.getInterviews().add(interview);
+		interviewRepository.save(interview);
 		selectorRepository.save(selector);
 		candidateRepository.save(candidate);
-		interviewRepository.save(interview);
 		positionRepository.save(jobPosition);
-		
-		
-		
 	}
 	
 	
+	public void updateStatus(Status status, Long idInterview) {
+		
+		Interview interview = interviewRepository.findByIdInterview(idInterview);
+		interview.setStatus(status);
+		interviewRepository.save(interview);
+	}
+	
+	public void updateFeedback(String feedback, Long idInterview) {
+			
+		Interview interview = interviewRepository.findByIdInterview(idInterview);
+		if(interview.getDateTime().isBefore(LocalDateTime.now())) 
+		{
+			interview.setFeedback(feedback);
+			interviewRepository.save(interview);
+		}
+		
+	}
 	
 	
 	

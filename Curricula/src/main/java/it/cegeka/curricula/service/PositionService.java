@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.cegeka.curricula.entities.JobPosition;
 import it.cegeka.curricula.entities.RequiredSkill;
+import it.cegeka.curricula.enums.Demand;
 import it.cegeka.curricula.enums.Sector;
 import it.cegeka.curricula.repository.PositionRepository;
 import it.cegeka.curricula.repository.ReqSkillRepository;
@@ -38,12 +39,10 @@ public class PositionService {
 			reqSkillRepository.save(r);
 		}
 		position.setSector(sector);
-		position.setOpen(true);
+		position.setDemand(Demand.INSERT);
 		position.setPositionName(namePosition);
 		positionRepository.save(position);
 	}
 	
-	public void updatePosition(Long idPosition ) {
-		
-	}
+	
 }
