@@ -7,6 +7,6 @@ import it.cegeka.curricula.entities.Skill;
 
 public interface SkillRepository extends JpaRepository<Skill, Long>{
 	
-	public Skill findSkillByName(String name);
+	public Skill findByName(String name);
 
 }

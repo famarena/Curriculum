@@ -32,7 +32,7 @@ public class PositionService {
 		for(SkillValue sv : reqSkills) 
 		{
 			RequiredSkill r= new RequiredSkill();
-			r.setSkill(skillRepository.findSkillByName(sv.getSkillName()));
+			r.setSkill(skillRepository.findByName(sv.getSkillName()));
 			r.setMin(sv.getValue());
 			r.setJobPosition(position);
 			reqSkillRepository.save(r);

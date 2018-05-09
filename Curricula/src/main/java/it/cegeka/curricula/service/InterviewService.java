@@ -28,7 +28,7 @@ public class InterviewService {
 			
 		Interview interview = new Interview();
 		interview.setDateTime(dateTime);
-		Selector selector = selectorRepository.findSelectorByIdSelector(idSelector);
+		Selector selector = selectorRepository.findByIdSelector(idSelector);
 		Candidate candidate = candidateRepository.findByIdCandidate(idCandidate);
 		interview.setCandidate(candidate);
 		interview.setSelector(selector);
