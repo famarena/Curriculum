@@ -29,7 +29,7 @@ public class CandidateController {
 	@Autowired 
 	PositionService positionServ;
 	
-	
+	//jefjefn
 	
 	@GetMapping(path="/newPosition")
 	@ResponseBody
