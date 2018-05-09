@@ -1,9 +1,11 @@
 package it.cegeka.curricula.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.cegeka.curricula.entities.Skill;
 import it.cegeka.curricula.repository.SkillRepository;
+@Service
 
 public class SkillService {
 	
