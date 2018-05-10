@@ -1,87 +1,61 @@
-//function btn() {
-//
-//	// ajax call
-//	$.ajax({
-//		url : "candidate/candidate",
-//		type : "GET",
-//		dataType : "json"
-//	}).done(function(data, textStatus, jqXHR) {
-//		generateTable(data);
-//	});
-//};
-//
-//function generateTable(data) {
-//
-//	$.each(response, generateTable(i, data))
-//	{
-//		var $tr = $
-//	}
-//	
-//	
-//}
-//function createRow (candidate){
-//	
-//	 tr += "<td>" + candidate.name + "</td>" + "<td>$" + candidate.surname + "</td></tr>";
-//
-//	    /* We add the table row to the table body */
-//	    tbody.innerHTML += tr;
-//	
-//}
+$("#buttonCandidate").click(function(){
+	var title ="<tr>" +
+			     "<th>Name</th>" +
+			     "<th>Surname</th>" + 
+			     "<th>Id</th>" +
+			     "<th>Dettagli</th>" +
+			   "</tr>" 
+	document.getElementById("tableCandidate").innerHTML+=title;
 
+	$.ajax({
+		url: "candidate/candidate",
+		success: function(candidates){
+			$.each(candidates, function(i,candidate){
 
-$.ajax({
-
-	url : '/candidate/candidate',
-
-	method : 'get'
-
+				var row ="<tr>" +
+							"<td>" + candidate.name + "</td>" +
+							"<td>" + candidate.surname + "</td>" +
+							"<td>" + candidate.idCandidate + "</td>" +
+							"<td>" +
+							   "<a href = candidate/candidate/"+ candidate.idCandidate +" class = 'detail' >Dettagli</a>" +
+							"</td>" +
+						 "</tr>"
+				document.getElementById("tableCandidate").innerHTML+= row;
+			})
+		}
 	})
 
-	.done(function (candidate){
+});
+$(document).on('click', '.detail', function(){
+	console.log("Sono entrato in un click");
+	var href = this.href;
+	$.ajax({
+		url: href,
+		success: function(candidate){
+			console.log("Sono entrato in un success");
+			$("#detail").empty();
+			var table = "<table id = 'tableDet'></table>"
+   		    document.getElementById("detail").innerHTML+=table;
+			var skillRates = candidate.skillrates;
+			$.each(skillRates, function(i, skillRate){
+				var title ="<tr>" +
+								 "<th>Skill</th>" +
+							     "<th>Real Skill</th>" + 
+							     "<th>Declared Skill</th>" + 
+			               "</tr>" 
+				if(i==0){
+     		 	  document.getElementById("tableDet").innerHTML+=title;
+				}
+				var row = "<tr>" +
+				             "<td>" + skillRate.skill.name + "</td>" +
+				             "<td>" + skillRate.realValue + "</td>" +
+				             "<td>" + skillRate.declaredValue + "</td>" +
+				          "</tr>"
+		        document.getElementById("tableDet").innerHTML+=row;
+		    })
+		}
+	})
+	return false;
+})
 
-	$('#tblcandidate').DataTable({
 
-	data: candidate,
-	searching: false,
-	columns: [
-
-	{ title: "name", data: 'name' },
-
-	{ title: "surname", data: 'surname' },
-	
-	
-	{ title: "Details", data: 'candidate.skillrate[0].skill.name' }
-	
-
-	]
-
-	});
-
-	});
-
-//$('add').click(function(e){
-//	e.preventDefault();
-//	var candidate=
-//		{
-//			name: $('name').val(),
-//			surname: $('surname').val(),
-//		}
-//	
-//
-//$.ajax({
-//	
-//	
-//
-//	url : '/candidate/candidate',
-//
-//	method : 'post'
-//
-//	data: JSON.stringfy(candidate);
-//	})
-//	.done(function(risp){
-//		
-//	});
-//
-//});
-
-	
