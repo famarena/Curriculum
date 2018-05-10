@@ -47,35 +47,40 @@ $.ajax({
 
 	{ title: "name", data: 'name' },
 
-	{ title: "surname", data: 'surname' }
+	{ title: "surname", data: 'surname' },
+	
+	
+	{ title: "Details", data: 'name' },
 
 	]
 
 	});
 
 	});
-$.ajax({
 
-	url : '/candidate/candidate',
+//$('add').click(function(e){
+//	e.preventDefault();
+//	var candidate=
+//		{
+//			name: $('name').val(),
+//			surname: $('surname').val(),
+//		}
+//	
+//
+//$.ajax({
+//	
+//	
+//
+//	url : '/candidate/candidate',
+//
+//	method : 'post'
+//
+//	data: JSON.stringfy(candidate);
+//	})
+//	.done(function(risp){
+//		
+//	});
+//
+//});
 
-	method : 'post'
-
-	})
-
-	.done(function (candidate){
-
-	$('#tblcandidate').DataTable({
-
-	data: candidate,
-	searching: false,
-	columns: [
-
-	{ title: "name", data: 'name' },
-
-	{ title: "surname", data: 'surname' }
-
-	]
-
-	});
-
-	});
+	

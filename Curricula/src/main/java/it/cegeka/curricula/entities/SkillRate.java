@@ -28,11 +28,12 @@ public class SkillRate {
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="skill")
-	@JsonIgnore
+	
 	private Skill skill;
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="candidate")
+	@JsonIgnore
 	private Candidate candidate;
 	
 	

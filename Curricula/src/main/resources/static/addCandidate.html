@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet"
+	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Candidate</title>
 </head>
 <body>
+
+	<form id ="form1">
+		  First name:<br>
+		  <input type="text" name="name" id="name">
+		  <br>
+		  Last name:<br>
+		  <input type="text" name="surname" id="surname">
+		  <br><br>
+		  <input type="submit" value="Submit" id= "add" onclick="add()">
+	</form> 
+
+
+
+	<script src="js/jquery-3.3.1.js"></script>
+
+	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+	<script src="js/candidate.js"></script>
 
 </body>
 </html>

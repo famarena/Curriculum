@@ -31,6 +31,7 @@ public class Skill {
 	@Enumerated(EnumType.STRING)
 	private SkillCategory category;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "skill")
 	private List<SkillRate> skillRates = new ArrayList<SkillRate>();
 	

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import it.cegeka.curricula.entities.Candidate;
+import it.cegeka.curricula.entities.SkillRate;
 import it.cegeka.curricula.service.CandidateService;
 
 @RestController
@@ -48,8 +49,13 @@ public class CandidateController {
 		// if(candidate==null)
 		// throw new UserNotFoundException("id-"+ id);
 		Resource<Candidate> resource = new Resource<Candidate>(candidate);
+		
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllCandidate());
-		resource.add(linkTo.withRel("all-users"));
+		resource.add(linkTo.withRel("all-candidate"));
+//		Resource<SkillRate> resource2 = new Resource<SkillRate>(candidate.getSkillrates());
+		linkTo = linkTo(methodOn(this.getClass()).retrieveUser(id));
+		
+		resource.add(linkTo.withRel("this-candidate"));
 		// HATEOAS
 		return resource;
 	}
