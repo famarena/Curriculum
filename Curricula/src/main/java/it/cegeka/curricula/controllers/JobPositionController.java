@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.enums.Sector;
 import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.service.PositionService;
@@ -46,6 +47,13 @@ public class JobPositionController {
 
 		positionServ.newPosition(reqSkills, Sector.IT, "junior dev");
 		return "all";
+	}
+	
+	@GetMapping(path="/list")
+	@ResponseBody
+	public List<Candidate> listCandidate() {
+		
+		return positionServ.foundCandidate(5L);
 	}
 	
 }
