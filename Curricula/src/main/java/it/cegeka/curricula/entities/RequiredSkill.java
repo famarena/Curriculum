@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="required_skill")
 public class RequiredSkill {
@@ -24,6 +26,7 @@ public class RequiredSkill {
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="job_position")
+	@JsonIgnore
 	private JobPosition jobPosition;
 	
 	@ManyToOne(cascade= CascadeType.ALL)

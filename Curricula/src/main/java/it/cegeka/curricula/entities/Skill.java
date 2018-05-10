@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import it.cegeka.curricula.enums.SkillCategory;
 
 @Entity
@@ -33,6 +35,7 @@ public class Skill {
 	private List<SkillRate> skillRates = new ArrayList<SkillRate>();
 	
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "skill")
+	@JsonIgnore
 	private List<RequiredSkill> requiredSkills = new ArrayList<RequiredSkill>();
 
 	

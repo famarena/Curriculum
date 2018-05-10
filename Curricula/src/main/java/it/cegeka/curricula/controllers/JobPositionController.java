@@ -47,7 +47,6 @@ public class JobPositionController {
 	}
 	
 	@GetMapping(path="/list")
-	@ResponseBody
 	public List<Candidate> listCandidate() {
 		return positionServ.foundCandidate(5L);
 	}
