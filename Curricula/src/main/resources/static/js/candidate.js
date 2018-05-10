@@ -62,6 +62,20 @@ $.ajax({
 
 	})
 
+	.done(function (candidate){
+
+	$('#tblcandidate').DataTable({
+
+	data: candidate,
+	searching: false,
+	columns: [
+
+	{ title: "name", data: 'name' },
+
+	{ title: "surname", data: 'surname' }
+
+	]
+
 	});
 
 	});
