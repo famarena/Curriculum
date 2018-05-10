@@ -50,7 +50,8 @@ $.ajax({
 	{ title: "surname", data: 'surname' },
 	
 	
-	{ title: "Details", data: 'name' },
+	{ title: "Details", data: 'candidate.skillrate[0].skill.name' }
+	
 
 	]
 
