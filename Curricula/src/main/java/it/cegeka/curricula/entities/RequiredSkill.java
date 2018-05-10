@@ -23,10 +23,9 @@ public class RequiredSkill {
 	@Column(name="min")
 	private int min;
 	
-	
+	@JsonIgnore
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="job_position")
-	@JsonIgnore
 	private JobPosition jobPosition;
 	
 	@ManyToOne(cascade= CascadeType.ALL)

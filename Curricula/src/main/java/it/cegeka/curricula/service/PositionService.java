@@ -18,6 +18,7 @@ import it.cegeka.curricula.repository.PositionRepository;
 import it.cegeka.curricula.repository.ReqSkillRepository;
 import it.cegeka.curricula.repository.SkillRepository;
 import it.cegeka.curricula.service.utility.CandidatePoint;
+import it.cegeka.curricula.service.utility.PositionViewModel;
 import it.cegeka.curricula.service.utility.SkillValue;
 
 @Service
@@ -85,5 +86,23 @@ public class PositionService {
 			finalCandidateList.add(can.getCandidate());
 		}
 		return finalCandidateList;
+	}
+	
+	public List<PositionViewModel> openPositionsModel(){
+		List<JobPosition> positions = positionRepository.findByDemand(Demand.INSERT);
+		List<PositionViewModel> models = new ArrayList<>();
+		for(JobPosition j : positions) {
+			PositionViewModel pos = new PositionViewModel(j);
+			models.add(pos);
+		}
+		return models;
+	}
+	
+	public List<RequiredSkill> skillForThisPosition(Long idPosition){
+		return reqSkillRepository.findByJobPosition(idPosition);
+	}
+	
+	public JobPosition findById(Long id) {
+		return positionRepository.findByIdPosition(id);
 	}
 }

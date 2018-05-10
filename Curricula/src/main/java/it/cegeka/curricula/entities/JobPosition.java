@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import it.cegeka.curricula.enums.Demand;
 import it.cegeka.curricula.enums.Sector;
 
@@ -38,6 +40,7 @@ public class JobPosition {
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "jobPosition")
 	private List<RequiredSkill> requiredSkills = new ArrayList<RequiredSkill>();
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "jobPosition")
 	private List<Interview> interviews = new ArrayList<Interview>();
 	

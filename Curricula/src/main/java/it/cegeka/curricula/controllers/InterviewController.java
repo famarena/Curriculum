@@ -62,22 +62,6 @@ public class InterviewController {
 	}
 	
 	
-	@GetMapping(path="/date")
-	@ResponseBody
-	public String dateInterview() {
-		String dateToDate ="2018-12-03" + " 00:00";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime dateTime = LocalDateTime.parse(dateToDate, formatter);
-		LocalDateTime tomorrow = dateTime.plusDays(1L);
-		List<Interview> i = interviewService.findByDateTimeBetween(dateTime, tomorrow);
-		return i.toString();
-	}
 	
-	@GetMapping(path="/updateStatus")
-	@ResponseBody
-	public String updateStatus() {
-		interviewService.updateStatus(Status.ASSIGNED, 1L);
-		return "updated";
-	}
 	
 }
