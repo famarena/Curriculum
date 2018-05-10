@@ -35,6 +35,12 @@ public class JobPositionController {
 		return positionServ.skillForThisPosition(id);
 	}
 	
+	@GetMapping(path="/{id}")
+	public JobPosition positionById(@PathVariable Long id){
+		System.out.println("ciao");
+		return positionServ.findById(id);
+	}
+	
 	@GetMapping(path="/list")
 	public List<Candidate> listCandidate() {
 		return positionServ.foundCandidate(5L);

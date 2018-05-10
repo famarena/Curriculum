@@ -52,8 +52,14 @@ public class PositionService {
 		return positionRepository.findAll();
 	}
 	
+	
+	public List<Candidate> findBestNCandidates(int numCandidates, Long idPosition){
+		List<Candidate> all= foundCandidate(idPosition);
+		return all.subList(0, numCandidates);
+	}
+	
+	
 	public List<Candidate> foundCandidate(Long idPosition) {
-
 		JobPosition position = positionRepository.findByIdPosition(idPosition);
 		List<RequiredSkill> req = position.getRequiredSkills();
 		List<Candidate> allCandidate = candidateRepository.findAll();

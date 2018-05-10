@@ -9,14 +9,15 @@ $("#buttonPosition").click(function(){
 
 	$.ajax({
 		url: "position/openPosition",
-		success: function(result){
-			$.each(result, function(positions,position){
+		success: function(positions){
+			$.each(positions, function(i,position){
+
 				var row ="<tr>" +
 							"<td>" + position.positionName + "</td>" +
 							"<td>" + position.sector + "</td>" +
 							"<td>" + position.idPosition + "</td>" +
 							"<td>" +
-							   "<a href = position/detail/"+ position.idPosition +" class = '.detail' >Dettagli</a>" +
+							   "<a href = position/"+ position.idPosition +" class = 'detail' >Dettagli</a>" +
 							"</td>" +
 						 "</tr>"
 				document.getElementById("tablePosition").innerHTML+= row;
@@ -25,3 +26,31 @@ $("#buttonPosition").click(function(){
 	})
 
 });
+$(document).on('click', '.detail', function(){
+	var href = this.href;
+	$.ajax({
+		url: href,
+		success: function(position){
+			$("#detail").empty();
+			var table = "<table id = 'tableSkill'></table>"
+   		    document.getElementById("detail").innerHTML+=table;
+			var skillList = position.requiredSkills;
+			$.each(skillList, function(i,reqSkill){
+				var title ="<tr>" +
+								 "<th>Skill</th>" +
+							     "<th>Minimo</th>" + 
+			               "</tr>" 
+				if(i==0){
+     		 	  document.getElementById("tableSkill").innerHTML+=title;
+				}
+				var row = "<tr>" +
+				             "<td>" + reqSkill.skill.name + "</td>" +
+				             "<td>" + reqSkill.min + "</td>" +
+				          "</tr>"
+		        document.getElementById("tableSkill").innerHTML+=row;
+		    })
+		}
+	})
+	return false;
+})
+
