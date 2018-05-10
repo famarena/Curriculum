@@ -61,13 +61,11 @@ public class CandidateController {
 	}
 
 	@PostMapping(path = "/candidate")
-//	public ResponseEntity<Object> addNewCandidate(@RequestBody Candidate candidate) {
-		public Candidate addNewCandidate(@RequestBody Candidate candidate) {
+	public ResponseEntity<Object> addNewCandidate(@RequestBody Candidate candidate) {
 		Candidate savedCandidate = candidateService.save(candidate);
-//		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//				.buildAndExpand(savedCandidate.getIdCandidate()).toUri();
-//		return ResponseEntity.created(location).build();
-		return savedCandidate;
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(savedCandidate.getIdCandidate()).toUri();
+		return ResponseEntity.created(location).build();
 	}
 
 	@GetMapping(path = "/findBySkill")
