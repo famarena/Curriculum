@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Candidates</h1>
+
+<form id ="form1" action = "/candidate/candidate" method="POST">
+		  First name:<br>
+		  <input type="text"  id="firstName" name="name" value="">
+		  <br>
+		  Last name:<br>
+		  <input type="text" id="surname" name="surname" value="">
+		  <br>
+		   Birthday:<br>
+          <input type="date" id="bday" name="bday">
+          <br>
+			Cv: <br>
+		  <input type="file" id="cv"  name="cv" value="cv">
+		  <input type="submit" value="Submit" id= "add">
+	</form> 
+
+<table id="tableCandidate">
+</table>
+<div id="detail">
+</div>
+</body>
+<script src="js/jquery-3.3.1.js"></script>
+
+<script src="js/candidate.js"></script>
+</html>

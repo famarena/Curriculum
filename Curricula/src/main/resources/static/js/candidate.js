@@ -1,4 +1,4 @@
-$("#buttonCandidate").click(function(){
+$(document).ready(function(){
 	var title ="<tr>" +
 			     "<th>Name</th>" +
 			     "<th>Surname</th>" + 
@@ -57,5 +57,31 @@ $(document).on('click', '.detail', function(){
 	})
 	return false;
 })
+
+$("#form1").submit(function(e){
+	
+    e.preventDefault();
+
+    var obj = $('#form1').serialize;
+
+    $.ajax({
+        type: 'POST',
+        url: 'candidate/candidate',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: '{ "name" : "'+$("#firstName").val()+'" ,"surname" : "'+$("#surname").val()+'", "birthday" : "'+$("#bday").val()+'" ,"cv" : "'+$("#cv").val()+'"  }',
+     
+        success: function(data) {
+        	console.log("Json passato");
+            alert(data);
+        },
+    
+    error: function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+    });
+
+	
+});
 
 
