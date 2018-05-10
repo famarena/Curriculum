@@ -4,22 +4,19 @@ $("#buttonPosition").click(function(){
 			     "<th>Settore</th>" + 
 			     "<th>Id</th>" +
 			     "<th>Dettagli</th>" +
-			   "</tr>" 
+			   "</tr>";
 	document.getElementById("tablePosition").innerHTML+=title;
 
 	$.ajax({
 		url: "position/openPosition",
 		success: function(positions){
 			$.each(positions, function(i,position){
-
 				var row ="<tr>" +
 							"<td>" + position.positionName + "</td>" +
 							"<td>" + position.sector + "</td>" +
 							"<td>" + position.idPosition + "</td>" +
-							"<td>" +
-							   "<a href = position/"+ position.idPosition +" class = 'detail' >Dettagli</a>" +
-							"</td>" +
-						 "</tr>"
+							"<td><a href = position/"+ position.idPosition +" class = 'detail' >Dettagli</a></td>" +
+						 "</tr>";
 				document.getElementById("tablePosition").innerHTML+= row;
 			})
 		}
@@ -49,8 +46,16 @@ $(document).on('click', '.detail', function(){
 				          "</tr>"
 		        document.getElementById("tableSkill").innerHTML+=row;
 		    })
+		    var search = "<input type='number' id='candidateNumber'></input><a id='search' href=/position/bestCandidates/"+position.idPosition+">CERCA!</a>";
+			document.getElementById("detail").innerHTML += search;
 		}
 	})
 	return false;
 })
+$(document).on('click', '#search', function(){
+	var href = this.href + "/"+ $('#candidateNumber').val();
+	console.log(href);
+	return false;
+})
+
 

@@ -55,4 +55,10 @@ public class JobPositionController {
 	public List<PositionViewModel> allOpenPositionsModel(){
 		return positionServ.openPositionsModel();
 	}
+	
+	@GetMapping(path= "/bestCandidates/{idPosition}/{num}")
+	public List<Candidate> bestNCandidates(@PathVariable Long idPosition, int num){
+		return positionServ.findBestNCandidates(num, idPosition);
+	}
+
 }
