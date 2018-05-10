@@ -77,7 +77,6 @@ public class CandidateController {
 	@PostMapping(path = "/setSkillRate")
 	public String setSkillRate(@RequestParam("id") Long id, @RequestParam("nameSkill") String name,
 			@RequestParam("value") Integer value) {
-
 		candidateService.setInitialSkill(id, name, value);
 		return "Skill settata";
 	}
