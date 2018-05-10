@@ -19,22 +19,23 @@ import it.cegeka.curricula.entities.SkillRate;
 public class CandidateService {
 
 	@Autowired
-	
+
 	CandidateRepository candidateRepo;
 	@Autowired
 	SkillRateRepository skillRateRepo;
 	@Autowired
 	SkillRepository skillRepo;
 
-//	public void newCandidate(String name, String surname, LocalDate date, String curriculum) {
-//		Candidate candidate = new Candidate();
-//		candidate.setName(name);
-//		candidate.setSurname(surname);
-//		candidate.setBirthday(date);
-//		candidate.setSkillrates(skills);
-//		candidate.setCurriculum(curriculum);
-//		candidateRepo.save(candidate);
-//	}
+	// public void newCandidate(String name, String surname, LocalDate date, String
+	// curriculum) {
+	// Candidate candidate = new Candidate();
+	// candidate.setName(name);
+	// candidate.setSurname(surname);
+	// candidate.setBirthday(date);
+	// candidate.setSkillrates(skills);
+	// candidate.setCurriculum(curriculum);
+	// candidateRepo.save(candidate);
+	// }
 
 	public void setRealSkill(long id, int realValue, String name) {
 		SkillRate sr = skillRateRepo.findByCandidateIdCandidateAndSkillName(id, name);
@@ -68,14 +69,16 @@ public class CandidateService {
 	}
 
 	public Candidate save(Candidate candidate) {
-		
-		return candidateRepo.save(candidate);	
+		return candidateRepo.save(candidate);
 	}
 
 	public Candidate findOne(Long id) {
-		
 		Optional<Candidate> opt = candidateRepo.findById(id);
 		return opt.get();
-		
+
+	}
+
+	public List<Candidate> findAll() {
+		return candidateRepo.findAll();
 	}
 }

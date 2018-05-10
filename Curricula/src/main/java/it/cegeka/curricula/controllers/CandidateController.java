@@ -23,8 +23,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.service.CandidateService;
 
-
-
 @RestController
 @RequestMapping(path = "/candidate")
 public class CandidateController {
@@ -32,44 +30,37 @@ public class CandidateController {
 	@Autowired
 	private CandidateService candidateService;
 
+	@GetMapping("/candidate")
+	public List<Candidate> retrieveAllCandidate() {
+		return candidateService.findAll();
+	}
+
 	@PostMapping(path = "/setCandidateRealSkill")
 	public String setkCandidateRealSkill(@RequestParam("id") Long id, @RequestParam("name") String name,
 			@RequestParam("value") int value) {
 		candidateService.setRealSkill(id, value, name);
 		return "Skill setted";
 	}
-	
+
 	@GetMapping("/candidate/{id}")
 	public Resource<Candidate> retrieveUser(@PathVariable Long id) {
-		
 		Candidate candidate = candidateService.findOne(id);
-		
-//		if(candidate==null)
-//			throw new UserNotFoundException("id-"+ id);
+		// if(candidate==null)
+		// throw new UserNotFoundException("id-"+ id);
 		Resource<Candidate> resource = new Resource<Candidate>(candidate);
-		
-//		ControllerLinkBuilder linkTo = 
-//				linkTo(methodOn(this.getClass()).retrieveAllUsers());
-//		
-//		resource.add(linkTo.withRel("all-users"));
-		
-		//HATEOAS
-		
+		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllCandidate());
+		resource.add(linkTo.withRel("all-users"));
+		// HATEOAS
 		return resource;
 	}
 
 	@PostMapping(path = "/candidate")
 	public ResponseEntity<Object> addNewCandidate(@RequestBody Candidate candidate) {
-		
 		Candidate savedCandidate = candidateService.save(candidate);
-		
-		URI location = ServletUriComponentsBuilder
-			.fromCurrentRequest()
-			.path("/{id}")
-			.buildAndExpand(savedCandidate.getIdCandidate()).toUri();
-		
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(savedCandidate.getIdCandidate()).toUri();
 		return ResponseEntity.created(location).build();
-		}
+	}
 
 	@GetMapping(path = "/findBySkill")
 	public List<Candidate> findCandidatebySkillName(@RequestParam("skill") String skill) {
