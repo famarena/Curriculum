@@ -17,6 +17,7 @@ import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.repository.InterviewRepository;
 import it.cegeka.curricula.repository.PositionRepository;
 import it.cegeka.curricula.repository.SelectorRepository;
+import it.cegeka.curricula.service.utility.InterviewParameter;
 @Service
 public class InterviewService {
 	
@@ -32,15 +33,14 @@ public class InterviewService {
 	@Autowired
 	private PositionRepository positionRepository;
 	
-	public void newInterview(LocalDateTime dateTime, Long idCandidate, Long idSelector, Long idPosition) {
-			
+	public Interview newInterview(InterviewParameter interviewParameter) {
 		Interview interview = new Interview();
-		Selector selector = selectorRepository.findByIdSelector(idSelector);
-		Candidate candidate = candidateRepository.findByIdCandidate(idCandidate);
-		JobPosition jobPosition = positionRepository.findByIdPosition(idPosition);
+		Selector selector = selectorRepository.findByIdSelector(interviewParameter.getIdSelector());
+		Candidate candidate = candidateRepository.findByIdCandidate(interviewParameter.getIdCandidate());
+		JobPosition jobPosition = positionRepository.findByIdPosition(interviewParameter.getIdPosition());
 		interview.setCandidate(candidate);
 		interview.setSelector(selector);
-		interview.setDateTime(dateTime);
+		interview.setDateTime(interviewParameter.getDateTime());
 		interview.setJobPosition(jobPosition);
 		interview.setStatus(Status.PLANNED);
 		selector.getInterviews().add(interview);
@@ -50,6 +50,7 @@ public class InterviewService {
 		selectorRepository.save(selector);
 		candidateRepository.save(candidate);
 		positionRepository.save(jobPosition);
+		return interview;
 	}
 	
 	
@@ -74,6 +75,10 @@ public class InterviewService {
 	public List<Interview> findByDateTimeBetween(LocalDateTime date1, LocalDateTime date2){
 		 List<Interview> interviews = interviewRepository.findByDateTimeBetween(date1,date2);
 		 return interviews;
+	}
+	
+	public Interview findInterviewById(Long idInterview) {
+		return interviewRepository.findByIdInterview(idInterview);
 	}
 	
 	
