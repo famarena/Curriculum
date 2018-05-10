@@ -8,24 +8,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import it.cegeka.curricula.entities.Candidate;
+import it.cegeka.curricula.entities.JobPosition;
 import it.cegeka.curricula.enums.Sector;
 import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.service.PositionService;
 import it.cegeka.curricula.service.utility.SkillValue;
-@Controller
+@RestController
 @RequestMapping(path="/position")
 public class JobPositionController {
-
-	@Autowired 
-	CandidateRepository candidateRepo;
-	
 	
 	@Autowired 
 	PositionService positionServ;
-	
-	//jefjefn
+
 	
 	@GetMapping(path="/newPosition")
 	@ResponseBody
@@ -52,8 +49,11 @@ public class JobPositionController {
 	@GetMapping(path="/list")
 	@ResponseBody
 	public List<Candidate> listCandidate() {
-		
 		return positionServ.foundCandidate(5L);
 	}
 	
+	@GetMapping(path= "/allPosition")
+	public List<JobPosition> allPosition(){
+		return positionServ.allPosition();
+	}
 }

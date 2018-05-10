@@ -47,6 +47,10 @@ public class PositionService {
 		positionRepository.save(position);
 	}
 
+	public List<JobPosition> allPosition(){
+		return positionRepository.findAll();
+	}
+	
 	public List<Candidate> foundCandidate(Long idPosition) {
 
 		JobPosition position = positionRepository.findByIdPosition(idPosition);

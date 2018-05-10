@@ -81,6 +81,8 @@ public class InterviewService {
 		return interviewRepository.findByIdInterview(idInterview);
 	}
 	
-	
+	public List<Interview> allInterview(){
+		return interviewRepository.findAll();
+	}
 	
 }
