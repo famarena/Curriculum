@@ -93,6 +93,9 @@ public class InterviewParameter {
 	public String getCandidateName() {
 		return candidateName;
 	}
+	
+	
+	
 
 	public void setCandidateName(String candidateName) {
 		this.candidateName = candidateName;

@@ -42,7 +42,6 @@ $(document).on('click', '.detail', function(){
                          "</table>"
    		    document.getElementById("detail").innerHTML+=table;
 			var skillList = position.requiredSkills;
-			console.log(skillList);
 			$.each(skillList, function(i,reqSkill){
 					var row = "<tr>" +
 					             "<td>" + reqSkill.skill.name + "</td>" +
@@ -50,7 +49,7 @@ $(document).on('click', '.detail', function(){
 					          "</tr>";
 			        document.getElementById("tableSkill").innerHTML+=row;
 		    })
-		    var search = "<input type='number' id='candidateNumber'></input><a id='search' href=/position/bestCandidates/"+position.idPosition+">CERCA!</a>";
+		    var search = "<input type='number' id='candidateNumber'></input><a id='search' idP="+position.idPosition+" href=/position/bestCandidates/"+position.idPosition+">CERCA!</a>";
 			document.getElementById("detail").innerHTML += search;
 		}
 	})
@@ -58,6 +57,7 @@ $(document).on('click', '.detail', function(){
 })
 $(document).on('click', '#search', function(){
 	var href = this.href + "/"+ $('#candidateNumber').val();
+	var idPosition= $(this).attr('idP');
 	$.ajax({
 		url: href,
 		success: function(bestCandidates){
@@ -70,19 +70,20 @@ $(document).on('click', '#search', function(){
 				                  "<th>Id Selezionatore</th>"+
 				                  "<th>Fissa Colloquio</th>" +
 				               "</tr>" +
-				            "</table>"
+				            "</table>";
 			$("#candidates").empty();
 	   		document.getElementById("candidates").innerHTML+=table;
 			$.each(bestCandidates, function(i,candidate){
-				var row = "<tr><form>" +
+				var row = "<tr>" +
+				                "<input type='hidden' id=position"+i+" name='idPosition' value="+idPosition+">" +
 		             			"<td>" + candidate.name + "</td>" +
 		             			"<td>" + candidate.surname + "</td>" +
-		             			"<td name='idCandidate'>" + candidate.idCandidate + "</td>" +
-		             			"<td><input id='date' name='stringDateTime' type='datetime-local'></td>" + 
-		             			"<td><select name='idSelector' class='selector'></td>" +
-		             			"<td><a href=/interview/interviews>FISSA!</a>" +
-	             		  "</form></tr>";
-	             	document.getElementById("tableCandidates").innerHTML+=row;
+		             			"<td name='idCandidate' id=idCandidate"+i+">" + candidate.idCandidate + "</td>" +
+		             			"<td><input id=date"+i+" name='stringDateTime' type='datetime-local'></td>" + 
+		             			"<td><select id=selector"+i+" name='idSelector' class='selector'></td>" +
+		             			"<td><input type='submit' idRow="+i+" class='newInterview'></td>" +
+	             		  "</div></tr>";
+	           $("#tableCandidates").append(row);
 	             
 			  })
 			  	$.ajax({
@@ -101,4 +102,25 @@ $(document).on('click', '#search', function(){
 	return false;
 })
 
+$(document).on('click', '.newInterview', function(){
+	var i = $(this).attr("idRow");
+	var idCandidate = $("#idCandidate"+i+"").html();
+	var dateWithT = $("#date"+i+"").val();
+	var idSelector = $("#selector"+i+"").val();
+	var idPosition = $("#position"+i+"").val();
+	var date = dateWithT.replace('T',' ');
+	var interview  ={}
+	interview.stringDateTime=date;
+	interview.idCandidate=idCandidate;
+	interview.idSelector=idSelector;
+	interview.idPosition=idPosition;
+	console.log(JSON.stringify(interview));
+	$.ajax({
+		type: "POST",
+	    url: "/interview/interviews",
+		contentType:'application/json',
+		data: JSON.stringify(interview)
+		})
+	return false;
+})
 
