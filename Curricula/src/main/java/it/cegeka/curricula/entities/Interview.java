@@ -42,6 +42,7 @@ public class Interview {
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="id_candidate")
+	
 	private Candidate candidate;
 	
 	@ManyToOne(cascade= CascadeType.ALL)

@@ -46,6 +46,7 @@ public class Candidate {
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "candidate")
+	
 	private List<Interview> interviews = new ArrayList<Interview>();
 
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "candidate")

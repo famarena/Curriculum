@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -38,6 +39,7 @@ public class InterviewController {
 	
 	@PostMapping(path="/interviews")
 	public ResponseEntity<Object> newInterview(@RequestBody InterviewParameter parameter) {
+		System.out.println(parameter);
 		Interview i = interviewService.newInterview(parameter);
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
@@ -57,8 +59,10 @@ public class InterviewController {
 	}
 	
 	@GetMapping(path="/allInterviews")
-	public List<Interview> allInterview(){
-		return interviewService.allInterview();
+	public List<InterviewParameter> allInterview(){
+		List<Interview> interviews = interviewService.allInterview();
+		return interviews.stream().map(i -> new InterviewParameter(i)).collect(Collectors.toList());
+
 	}
 	
 	

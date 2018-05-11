@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import it.cegeka.curricula.enums.Sector;
 @Entity
 @Table(name="selector")
@@ -31,6 +33,7 @@ public class Selector {
 	@Enumerated(EnumType.STRING)
 	private Sector sector;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy = "selector")
 	private List<Interview> interviews;
 	
