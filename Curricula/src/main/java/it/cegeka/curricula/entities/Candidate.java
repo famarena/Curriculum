@@ -18,7 +18,11 @@ import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 //Testdev
+@ApiModel(description="All details about the candidate.")
 @Entity
 @Table(name="candidate")
 
@@ -28,10 +32,16 @@ public class Candidate {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "id_candidate")
 	private Long idCandidate;
+	
+	@ApiModelProperty(notes="Name should have atleast 2 characters")
 	@Column(name = "name")
 	private String name;
+	
+	@ApiModelProperty(notes="Surame should be filled")
 	@Column(name = "surname")
 	private String surname;
+	
+	@ApiModelProperty(notes="DD-MM-YYYY")
 	@Column(name = "birthday")
 	private LocalDate birthday;
 

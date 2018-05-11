@@ -25,6 +25,26 @@ $(document).ready(function(){
 		}
 	})
 
+			var title2 ="<tr>" +
+		    "<th>NameSkill</th>" +
+		    
+		  "</tr>" 
+		    document.getElementById("tableSkills").innerHTML+=title2;
+	
+	$.ajax({
+		url: "skill/skills",
+		success: function(skills){
+			$.each(skills, function(i,skill){
+
+				var row2 ="<tr>" +
+							"<td>" + skill.name + "</td>" +
+							
+						 "</tr>"
+				document.getElementById("tableSkills").innerHTML+= row2;
+			})
+		}
+	})
+
 });
 $(document).on('click', '.detail', function(){
 	console.log("Sono entrato in un click");
@@ -69,7 +89,7 @@ $("#form1").submit(function(e){
         url: 'candidate/candidate',
         dataType: 'json',
         contentType: 'application/json',
-        data: '{ "name" : "'+$("#firstName").val()+'" ,"surname" : "'+$("#surname").val()+'", "birthday" : "'+$("#bday").val()+'" ,"cv" : "'+$("#cv").val()+'"  }',
+        data: '{ "name" : "'+$("#firstName").val()+'" ,"surname" : "'+$("#surname").val()+'", "birthday" : "'+$("#bday").val()+'"   }',
      
         success: function(data) {
         	console.log("Json passato");
