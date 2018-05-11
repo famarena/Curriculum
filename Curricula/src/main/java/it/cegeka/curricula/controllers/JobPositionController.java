@@ -37,7 +37,6 @@ public class JobPositionController {
 	
 	@GetMapping(path="/{id}")
 	public JobPosition positionById(@PathVariable Long id){
-		System.out.println("ciao");
 		return positionServ.findById(id);
 	}
 	
@@ -57,8 +56,14 @@ public class JobPositionController {
 	}
 	
 	@GetMapping(path= "/bestCandidates/{idPosition}/{num}")
-	public List<Candidate> bestNCandidates(@PathVariable Long idPosition, int num){
-		return positionServ.findBestNCandidates(num, idPosition);
+	public List<Candidate> bestNCandidates(@PathVariable Long idPosition, @PathVariable Integer num){
+		List<Candidate> c =positionServ.findBestNCandidates(num, idPosition);
+		return c;
+	}
+	@GetMapping(path= "/bestCandidates/{idPosition}")
+	public List<Candidate> bestC(@PathVariable Long idPosition){
+		List<Candidate> c =positionServ.foundCandidate(idPosition);
+		return c;
 	}
 
 }
