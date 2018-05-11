@@ -23,6 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.entities.SkillRate;
 import it.cegeka.curricula.service.CandidateService;
+import it.cegeka.curricula.service.utility.CreateCandidate;
 
 @RestController
 @RequestMapping(path = "/candidate")
@@ -81,10 +82,10 @@ public class CandidateController {
 	}
 
 	@PostMapping(path = "/setSkillRate")
-	public String setSkillRate(@RequestParam("id") Long id, @RequestParam("nameSkill") String name,
-			@RequestParam("value") Integer value) {
-		candidateService.setInitialSkill(id, name, value);
-		return "Skill settata";
+	public String setSkillRate(@RequestParam("id") CreateCandidate skill) {
+		candidateService.setInitialSkill(skill);
+		return "Skill inserted";
 	}
-
+	
+	
 }

@@ -7,10 +7,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.cegeka.curricula.repository.CandidateRepository;
 import it.cegeka.curricula.repository.SkillRateRepository;
 import it.cegeka.curricula.repository.SkillRepository;
+import it.cegeka.curricula.service.utility.CreateCandidate;
 import it.cegeka.curricula.entities.Candidate;
 import it.cegeka.curricula.entities.Skill;
 import it.cegeka.curricula.entities.SkillRate;
@@ -57,13 +59,25 @@ public class CandidateService {
 		return lcand;
 	}
 
-	public void setInitialSkill(Long id, String name, Integer value) {
+	public void setInitialSkill(CreateCandidate newCandidate) {
 		SkillRate e = new SkillRate();
-		Optional<Candidate> opt = candidateRepo.findById(id);
-		Candidate candidate = opt.get();
-		e.setDeclaredValue(value);
-		e.setCandidate(candidate);
-		e.setSkill(skillRepo.findByName(name));
+//		Optional<Candidate> opt = candidateRepo.findById(skill.getId());
+		Candidate candidate= new Candidate();
+		candidate.setName(newCandidate.getName());
+		candidate.setSurname(newCandidate.getSurname());
+		candidate.setBirthday(newCandidate.getBirthday());
+		int conta=0;
+		for(String s : newCandidate.getSkillName())
+		{
+			
+			e.setSkill(skillRepo.findByName(s));
+			
+		}
+		for(Integer i : newCandidate.getValue())
+		{
+			e.setDeclaredValue(i);
+		}
+
 		candidate.getSkillrates().add(e);
 		candidateRepo.save(candidate);
 	}

@@ -25,42 +25,28 @@ $(document).ready(function(){
 		}
 	})
 
-			var title2 ="<tr>" +
-		    "<th>NameSkill</th>" +
-		    
-		  "</tr>" 
-		    document.getElementById("tableSkills").innerHTML+=title2;
-	
-	$.ajax({
-		url: "skill/skills",
-		success: function(skills){
-			$.each(skills, function(i,skill){
-
-				var row2 ="<tr>" +
-							"<td>" + skill.name + "</td>" +
-							
-						 "</tr>"
-				document.getElementById("tableSkills").innerHTML+= row2;
-			})
-		}
-	})
-	
+			
+		
 		
 	$.ajax({
 		url: "skill/skills",
 		success: function(skills){
 			
-			var test ="<select>";
+			var test ="<select name='skills'>";
 			
 			$.each(skills, function(i,skill){
 
-				 test =+ "<option value="+ skill.name + " >" + skill.name + "</option>" 
+				 test += "<option value="+ skill.name + " >" + skill.name + "</option>" 
 					
 			})
 
 			
-			test= + "</select>";
+			test += "</select>";
 				document.getElementById("skills").innerHTML+= test;
+				var stringa=  " Skill level: <br> <input type='text'  id='value'  name='value'>"
+				document.getElementById("value").innerHTML+= stringa;
+				var stringa2=  " <input type='button' value='Another Skill' id= 'addLine'>"
+					document.getElementById("another").innerHTML+= stringa2;
 		}
 	})
 	
@@ -74,7 +60,7 @@ $(document).on('click', '.detail', function(){
 	$.ajax({
 		url: href,
 		success: function(candidate){
-			console.log("Sono entrato in un success");
+	
 			$("#detail").empty();
 			var table = "<table id = 'tableDet'></table>"
    		    document.getElementById("detail").innerHTML+=table;
@@ -100,18 +86,42 @@ $(document).on('click', '.detail', function(){
 	return false;
 })
 
+$(document).on('click', '#addLine', function(){
+	$.ajax({
+		url: "skill/skills",
+		success: function(skills){
+			
+			var test ="<select name='skills'>";
+			
+			$.each(skills, function(i,skill){
+
+				 test += "<option value="+ skill.name + " >" + skill.name + "</option>" 
+					
+			})
+
+			
+			test += "</select>";
+				document.getElementById("skills").innerHTML+= test;
+				var stringa=  " Skill level: <br> <input type='text'  id='value'  name='value'>"
+				document.getElementById("value").innerHTML+= stringa;
+			
+		}
+	})
+	
+})
+
 $("#form1").submit(function(e){
 	
     e.preventDefault();
 
-    var obj = $('#form1').serialize;
-
+    var obj = $('#form1').serializeObject();
+    console.log(obj);
     $.ajax({
         type: 'POST',
-        url: 'candidate/candidate',
+        url: '/setSkillRate',
         dataType: 'json',
         contentType: 'application/json',
-        data: '{ "name" : "'+$("#firstName").val()+'" ,"surname" : "'+$("#surname").val()+'", "birthday" : "'+$("#bday").val()+'"   }',
+        data: obj,
      
         success: function(data) {
         	console.log("Json passato");
