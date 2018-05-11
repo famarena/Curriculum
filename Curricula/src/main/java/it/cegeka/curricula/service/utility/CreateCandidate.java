@@ -7,8 +7,8 @@ public class CreateCandidate {
 
 	private String name;
 	private String surname;
-	private LocalDate birthday;
-	private List<String> skillName;
+	private LocalDate bday;
+	private List<String> skills;
 	private List<Integer> value;
 	public String getName() {
 		return name;
@@ -22,17 +22,17 @@ public class CreateCandidate {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public LocalDate getBirthday() {
-		return birthday;
+	public LocalDate getBday() {
+		return bday;
 	}
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
+	public void setBday(LocalDate bday) {
+		this.bday = bday;
 	}
-	public List<String> getSkillName() {
-		return skillName;
+	public List<String> getSkills() {
+		return skills;
 	}
-	public void setSkillName(List<String> skillName) {
-		this.skillName = skillName;
+	public void setSkills(List<String> skillName) {
+		this.skills = skillName;
 	}
 	public List<Integer> getValue() {
 		return value;

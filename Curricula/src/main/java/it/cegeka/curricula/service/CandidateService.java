@@ -60,26 +60,27 @@ public class CandidateService {
 	}
 
 	public void setInitialSkill(CreateCandidate newCandidate) {
-		SkillRate e = new SkillRate();
+		
 //		Optional<Candidate> opt = candidateRepo.findById(skill.getId());
 		Candidate candidate= new Candidate();
 		candidate.setName(newCandidate.getName());
 		candidate.setSurname(newCandidate.getSurname());
-		candidate.setBirthday(newCandidate.getBirthday());
-		int conta=0;
-		for(String s : newCandidate.getSkillName())
+		candidate.setBirthday(newCandidate.getBday());
+		List<String> skillNames = newCandidate.getSkills();
+		List<Integer> skillValues = newCandidate.getValue();
+		for(int i=0; i<skillNames.size();i++)
 		{
-			
-			e.setSkill(skillRepo.findByName(s));
-			
+			SkillRate e = new SkillRate();
+	        Skill skill = skillRepo.findByName(skillNames.get(i));
+	        e.setSkill(skill);
+	        e.setDeclaredValue(skillValues.get(i));
+			e.setCandidate(candidate);
+			candidate.getSkillrates().add(e);
+	       
 		}
-		for(Integer i : newCandidate.getValue())
-		{
-			e.setDeclaredValue(i);
-		}
-
-		candidate.getSkillrates().add(e);
-		candidateRepo.save(candidate);
+		 candidateRepo.save(candidate);
+		
+		
 	}
 
 	public Candidate save(Candidate candidate) {

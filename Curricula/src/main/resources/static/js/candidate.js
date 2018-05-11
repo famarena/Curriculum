@@ -118,10 +118,10 @@ $("#form1").submit(function(e){
     console.log(obj);
     $.ajax({
         type: 'POST',
-        url: '/setSkillRate',
+        url: 'candidate/newCandidate',
         dataType: 'json',
         contentType: 'application/json',
-        data: obj,
+        data: JSON.stringify(obj),
      
         success: function(data) {
         	console.log("Json passato");

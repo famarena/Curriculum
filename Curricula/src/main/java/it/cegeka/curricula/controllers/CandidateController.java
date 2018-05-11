@@ -81,8 +81,8 @@ public class CandidateController {
 		return lcand;
 	}
 
-	@PostMapping(path = "/setSkillRate")
-	public String setSkillRate(@RequestParam("id") CreateCandidate skill) {
+	@PostMapping(path = "/newCandidate")
+	public String setSkillRate(@RequestBody CreateCandidate skill) {
 		candidateService.setInitialSkill(skill);
 		return "Skill inserted";
 	}
