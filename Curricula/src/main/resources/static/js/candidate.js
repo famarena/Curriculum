@@ -44,6 +44,28 @@ $(document).ready(function(){
 			})
 		}
 	})
+	
+		
+	$.ajax({
+		url: "skill/skills",
+		success: function(skills){
+			
+			var test ="<select>";
+			
+			$.each(skills, function(i,skill){
+
+				 test =+ "<option value="+ skill.name + " >" + skill.name + "</option>" 
+					
+			})
+
+			
+			test= + "</select>";
+				document.getElementById("skills").innerHTML+= test;
+		}
+	})
+	
+	
+	
 
 });
 $(document).on('click', '.detail', function(){
