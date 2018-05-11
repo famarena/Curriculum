@@ -1,4 +1,4 @@
-package config;
+package it.cegeka.curricula.config;
 
 import java.util.Arrays;
 import java.util.HashSet;
